@@ -22,6 +22,12 @@ public class Commandnick extends EssentialsCommand {
         String commandLabel,
         String[] args
     ) {
+        // Require explicit nickname permission for every /nick invocation.
+        if (!sender.isAuthorized("essentials.nick")) {
+            sender.sendMessage(Util.i18n("noAccessCommand"));
+            return;
+        }
+
         if(!isDisplayNamesEnabled()) {
             sender.sendMessage(Util.i18n("nickNotEnabled"));
             return;
@@ -51,10 +57,7 @@ public class Commandnick extends EssentialsCommand {
     }
 
     private boolean canSetOtherPlayerNicknames(User sender) {
-        return (
-            sender.isAuthorized(PERMISSION_NODE) ||
-            sender.isOp()
-        );
+        return sender.isAuthorized(PERMISSION_NODE);
     }
     
     private boolean isDisplayNamesEnabled() {

@@ -386,3 +386,11 @@ commands:
     description: Calculates the worth of items in hand or as specified.
     usage: /<command> <item> <amount>
     aliases: [eworth]
+
+permissions:
+  essentials.nick:
+    description: Allows changing your own nickname.
+    default: false
+  essentials.nick.others:
+    description: Allows changing other players' nicknames.
+    default: op
